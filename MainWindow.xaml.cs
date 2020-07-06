@@ -29,13 +29,13 @@ namespace SegundoParcialVictorPalma
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
-            rRegistro rRegistro = new rRegistro();
+            rProyecto rRegistro = new rProyecto();
             rRegistro.Show();
         }
 
         private void MenuItem_Click_1(object sender, RoutedEventArgs e)
         {
-            ConsultaRegistro consultaRegistro = new ConsultaRegistro();
+            ConsultaProyecto consultaRegistro = new ConsultaProyecto();
             consultaRegistro.Show();
         }
     }

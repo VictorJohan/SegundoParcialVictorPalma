@@ -70,7 +70,7 @@ namespace SegundoParcialVictorPalma.BLL
 
             try
             {
-                contexto.Database.ExecuteSqlRaw($"Delete FROM OrdenesDetalle Where ProyectoId={proyecto.ProyectoId}");
+                contexto.Database.ExecuteSqlRaw($"Delete FROM ProyectoDetalle Where ProyectoId={proyecto.ProyectoId}");
                 foreach (var anterior in proyecto.ProyectoDetalles)
                 {
                     contexto.Entry(anterior).State = EntityState.Added;

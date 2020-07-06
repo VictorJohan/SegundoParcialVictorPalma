@@ -15,9 +15,9 @@ namespace SegundoParcialVictorPalma.UI.Consultas
     /// <summary>
     /// Interaction logic for ConsultaRegistro.xaml
     /// </summary>
-    public partial class ConsultaRegistro : Window
+    public partial class ConsultaProyecto : Window
     {
-        public ConsultaRegistro()
+        public ConsultaProyecto()
         {
             InitializeComponent();
         }
