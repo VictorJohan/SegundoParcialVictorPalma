@@ -15,9 +15,9 @@ namespace SegundoParcialVictorPalma.UI.Registro
     /// <summary>
     /// Interaction logic for rRegistro.xaml
     /// </summary>
-    public partial class rRegistro : Window
+    public partial class r : Window
     {
-        public rRegistro()
+        public r()
         {
             InitializeComponent();
         }
