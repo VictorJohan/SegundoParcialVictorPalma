@@ -19,7 +19,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Entidades\" />
     <Folder Include="BLL\" />
     <Folder Include="DAL\" />
     <Folder Include="DATA\" />
