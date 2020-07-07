@@ -9,7 +9,7 @@ using SegundoParcialVictorPalma.DAL;
 namespace SegundoParcialVictorPalma.Migrations
 {
     [DbContext(typeof(Contexto))]
-    [Migration("20200706230206_Migracion_Inicial")]
+    [Migration("20200707031502_Migracion_Inicial")]
     partial class Migracion_Inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,9 +27,6 @@ namespace SegundoParcialVictorPalma.Migrations
                     b.Property<int>("ProyectoId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("ProyectosProyectoId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<string>("Requerimiento")
                         .HasColumnType("TEXT");
 
@@ -39,12 +36,11 @@ namespace SegundoParcialVictorPalma.Migrations
                     b.Property<int>("TipoId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("TipoTarea")
-                        .HasColumnType("TEXT");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("ProyectosProyectoId");
+                    b.HasIndex("ProyectoId");
+
+                    b.HasIndex("TipoId");
 
                     b.ToTable("ProyectoDetalle");
                 });
@@ -109,7 +105,15 @@ namespace SegundoParcialVictorPalma.Migrations
                 {
                     b.HasOne("SegundoParcialVictorPalma.Entidades.Proyectos", null)
                         .WithMany("ProyectoDetalles")
-                        .HasForeignKey("ProyectosProyectoId");
+                        .HasForeignKey("ProyectoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SegundoParcialVictorPalma.Entidades.Tareas", "Tarea")
+                        .WithMany()
+                        .HasForeignKey("TipoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

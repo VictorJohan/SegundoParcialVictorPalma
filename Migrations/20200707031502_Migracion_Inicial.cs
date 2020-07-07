@@ -43,20 +43,24 @@ namespace SegundoParcialVictorPalma.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     ProyectoId = table.Column<int>(nullable: false),
                     TipoId = table.Column<int>(nullable: false),
-                    TipoTarea = table.Column<string>(nullable: true),
                     Requerimiento = table.Column<string>(nullable: true),
-                    TiempoMinutos = table.Column<int>(nullable: false),
-                    ProyectosProyectoId = table.Column<int>(nullable: true)
+                    TiempoMinutos = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ProyectoDetalle", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ProyectoDetalle_Proyectos_ProyectosProyectoId",
-                        column: x => x.ProyectosProyectoId,
+                        name: "FK_ProyectoDetalle_Proyectos_ProyectoId",
+                        column: x => x.ProyectoId,
                         principalTable: "Proyectos",
                         principalColumn: "ProyectoId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ProyectoDetalle_Tareas_TipoId",
+                        column: x => x.TipoId,
+                        principalTable: "Tareas",
+                        principalColumn: "TareaId",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.InsertData(
@@ -80,9 +84,14 @@ namespace SegundoParcialVictorPalma.Migrations
                 values: new object[] { 4, "Prueba" });
 
             migrationBuilder.CreateIndex(
-                name: "IX_ProyectoDetalle_ProyectosProyectoId",
+                name: "IX_ProyectoDetalle_ProyectoId",
                 table: "ProyectoDetalle",
-                column: "ProyectosProyectoId");
+                column: "ProyectoId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProyectoDetalle_TipoId",
+                table: "ProyectoDetalle",
+                column: "TipoId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -91,10 +100,10 @@ namespace SegundoParcialVictorPalma.Migrations
                 name: "ProyectoDetalle");
 
             migrationBuilder.DropTable(
-                name: "Tareas");
+                name: "Proyectos");
 
             migrationBuilder.DropTable(
-                name: "Proyectos");
+                name: "Tareas");
         }
     }
 }

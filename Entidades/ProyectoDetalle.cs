@@ -14,18 +14,18 @@ namespace SegundoParcialVictorPalma.Entidades
         public int TipoId { get; set; }
 
         [ForeignKey("TipoId")]
-        public Tareas TipoTarea { get; set; }
+        public Tareas Tarea { get; set; } = new Tareas();
         public string Requerimiento { get; set; }
         public int TiempoMinutos { get; set; }
 
-        public ProyectoDetalle(int proyectoId, int tipoId, string tipoTarea, string requerimiento, int tiempoMinutos)
+        /*public ProyectoDetalle(int proyectoId, Tareas materia, string requerimiento, int tiempoMinutos)
         {
             Id = 0;
             ProyectoId = proyectoId;
-            TipoId = tipoId;
-            TipoTarea = tipoTarea;
+            TipoId = materia.TareaId;
+            Tarea.TipoTarea = materia.TipoTarea;
             Requerimiento = requerimiento;
             TiempoMinutos = tiempoMinutos;
-        }
+        }*/
     }
 }

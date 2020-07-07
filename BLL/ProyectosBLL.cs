@@ -48,8 +48,9 @@ namespace SegundoParcialVictorPalma.BLL
 
             try
             {
-                contexto.Proyectos.Add(proyecto);
-                ok = contexto.SaveChanges() > 0;
+                if(contexto.Proyectos.Add(proyecto) != null)
+                    ok = contexto.SaveChanges() > 0;
+                    
             }
             catch (Exception)
             {
@@ -99,7 +100,7 @@ namespace SegundoParcialVictorPalma.BLL
             try
             {
                 proyectos = contexto.Proyectos.Where(p => p.ProyectoId == id).
-                    Include(d => d.ProyectoDetalles).ThenInclude(t => t.TipoTarea).SingleOrDefault();
+                    Include(d => d.ProyectoDetalles).ThenInclude(t => t.Tarea).SingleOrDefault();
             }
             catch (Exception)
             {

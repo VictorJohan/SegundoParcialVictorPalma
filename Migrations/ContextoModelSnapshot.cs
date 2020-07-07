@@ -25,9 +25,6 @@ namespace SegundoParcialVictorPalma.Migrations
                     b.Property<int>("ProyectoId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("ProyectosProyectoId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<string>("Requerimiento")
                         .HasColumnType("TEXT");
 
@@ -37,12 +34,11 @@ namespace SegundoParcialVictorPalma.Migrations
                     b.Property<int>("TipoId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("TipoTarea")
-                        .HasColumnType("TEXT");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("ProyectosProyectoId");
+                    b.HasIndex("ProyectoId");
+
+                    b.HasIndex("TipoId");
 
                     b.ToTable("ProyectoDetalle");
                 });
@@ -107,7 +103,15 @@ namespace SegundoParcialVictorPalma.Migrations
                 {
                     b.HasOne("SegundoParcialVictorPalma.Entidades.Proyectos", null)
                         .WithMany("ProyectoDetalles")
-                        .HasForeignKey("ProyectosProyectoId");
+                        .HasForeignKey("ProyectoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SegundoParcialVictorPalma.Entidades.Tareas", "Tarea")
+                        .WithMany()
+                        .HasForeignKey("TipoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
