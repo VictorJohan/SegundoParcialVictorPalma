@@ -9,7 +9,7 @@
     <Grid>
         <StackPanel Orientation="Vertical" Margin="10,10,10,10">
             <Label Content="ProyectoId" FontSize="11"/>
-            
+
             <!--TextBox y Boton en el StackPanel-->
             <StackPanel Orientation="Horizontal">
                 <TextBox Name="Nombre" Width="100" Height="20" HorizontalAlignment="Left" Margin="5,0"/>
@@ -20,33 +20,58 @@
                     </StackPanel>
                 </Button>
             </StackPanel>
-            
+
             <!--Fecha-->
             <Label Content="Fecha" FontSize="11"/>
             <DatePicker Name="FechaDatePicker" Width="100" Height="20" HorizontalAlignment="Left" Margin="5,0" Padding="-1"/>
-            
+
             <!--Descripcion-->
             <Label Content="Descripción"/>
             <TextBox Name="DescripcionTextBox" Width="200" Height="60" Margin="5,0" HorizontalAlignment="Left"/>
 
             <!--GroupBox-->
             <GroupBox Header="Detalle Proyecto" BorderBrush="Black">
-                <!--Panel de Labels-->
                 <StackPanel Orientation="Vertical">
-                    <Label Content="Tipo de Tarea" FontSize="11"/>
+                    <!--Panel de Labels-->
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Tipo de tarea" FontSize="11"/>
+                        <Label Content="Requerimiento de la tarea" FontSize="11" Margin="85,0,0,0"/>
+                        <Label Content="Tiempo(minutos)" FontSize="11" Margin="176,0,0,0"/>
+                    </StackPanel>
+                    <!--Panel de TextBox y Boton-->
+                    <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                        <ComboBox Name="TipoTareaComboBox" Width="150" Height="20"/>
+                        <TextBox Name="RequirimientoTextBox" Width="300" Height="20" Margin="14,0,0,0"/>
+                        <TextBox Name="TiempoTextBox" Width="80" Height="20" Margin="13,0,0,0"/>
+
+                        <Button Name="AgregarButton" Width="67" Height="20" Margin="10,0,0,0">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/Resources/agregar.png" />
+                                <Label Content="Agregar" FontSize="11" Padding="-1"/>
+                            </StackPanel>
+                        </Button>
+
+                    </StackPanel>
+
+                    <DataGrid Name="DetalleDataGrid" AutoGenerateColumns="False" HorizontalAlignment="Left" ItemsSource="{Binding ProyectoDetalles}" Margin="0,6,0,0">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="TipoId"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    
                 </StackPanel>
             </GroupBox>
 
             <!--Panel de Botones-->
             <StackPanel Orientation="Horizontal" Width="230">
-               <!--Nuevo-->
+                <!--Nuevo-->
                 <Button Name="NuevoButton" Width="60" Height="20" Click="NuevoButton_Click">
                     <StackPanel Orientation="Horizontal">
                         <Image Source="/Resources/new.png" />
                         <Label Content="Nuevo" Margin="4,0" Padding="-1"/>
                     </StackPanel>
                 </Button>
-                
+
                 <!--Guardar-->
                 <Button Name="GuardarButton" Width="67" Height="20" Margin="10,0,0,0" Click="GuardarButton_Click">
                     <StackPanel Orientation="Horizontal">
@@ -54,7 +79,7 @@
                         <Label Content="Guardar" Margin="4,0" Padding="-1"/>
                     </StackPanel>
                 </Button>
-                
+
                 <!--Eliminar-->
                 <Button Name="EliminarButton" Width="67" Height="20" Margin="10,0" Click="EliminarButton_Click">
                     <StackPanel Orientation="Horizontal">

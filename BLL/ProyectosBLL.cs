@@ -98,7 +98,8 @@ namespace SegundoParcialVictorPalma.BLL
 
             try
             {
-                proyectos = contexto.Proyectos.Find(id);
+                proyectos = contexto.Proyectos.Where(p => p.ProyectoId == id).
+                    Include(d => d.ProyectoDetalles).ThenInclude(t => t.TipoTarea).SingleOrDefault();
             }
             catch (Exception)
             {

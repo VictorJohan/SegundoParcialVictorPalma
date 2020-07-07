@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace SegundoParcialVictorPalma.Entidades
@@ -11,7 +12,9 @@ namespace SegundoParcialVictorPalma.Entidades
         public int Id { get; set; }
         public int ProyectoId { get; set; }
         public int TipoId { get; set; }
-        public string TipoTarea { get; set; }
+
+        [ForeignKey("TipoId")]
+        public Tareas TipoTarea { get; set; }
         public string Requerimiento { get; set; }
         public int TiempoMinutos { get; set; }
 
